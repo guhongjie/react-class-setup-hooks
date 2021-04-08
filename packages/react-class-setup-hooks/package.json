@@ -1,0 +1,22 @@
+{
+  "name": "react-class-setup-hooks",
+  "description": "一个为react class扩展支持hooks和类vue3 setup",
+  "keywords": [
+    "react",
+    "hooks",
+    "class",
+    "setup"
+  ],
+  "version": "1.0.0",
+  "main": "index.umd.js",
+  "module": "index.es.js",
+  "dependencies": {
+    "react": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guhongjie/react-class-setup-hooks.git"
+  },
+  "author": "guhongjie",
+  "license": "MIT"
+}
