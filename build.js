@@ -1,5 +1,5 @@
 const rollup = require("rollup");
-const terser = require("terser");
+const { minify } = require("terser");
 const path = require("path");
 const fs = require("fs");
 
@@ -34,19 +34,16 @@ async function build() {
       (async function () {
         const bundle = await rollup.rollup(config.input);
         const { code } = await bundle.generate(output);
-        const minified = terser.minify(code, {
+        const minified = await minify(code, {
           output: {
             ascii_only: true,
-            keep_quoted_props: true,
-          },
-          compress: {
-            pure_funcs: ["makeMap"],
+            // keep_quoted_props: true,
           },
           module: true,
           toplevel: true,
           nameCache: {},
-        }).code;
-        await write(output.file, minified);
+        });
+        await write(output.file, minified.code);
       })()
     )
   );

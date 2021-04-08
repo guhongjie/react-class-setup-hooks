@@ -109,7 +109,7 @@ function pushEvent(idx, callback) {
 }
 
 export function extendsComponent(ComponentClz, setupFun) {
-  return class Component extends ComponentClz {
+  return class extends ComponentClz {
     constructor(props, context) {
       super(props, context);
       this[id] = [];

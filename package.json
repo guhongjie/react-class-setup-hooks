@@ -15,7 +15,7 @@
   "dependencies": {
     "rollup": "^0.66.6",
     "rollup-plugin-babel": "^4.3.0",
-    "terser": "^3.10.2"
+    "terser": "^5.6.1"
   },
   "repository": {
     "type": "git",
