@@ -220,7 +220,7 @@ cancel：`() => void`
 
 #### 状态state相关
 
-#### `setupUseReducer(reducer, initialState) => [getter, dispatch]`
+#### `setupUseReducer(reducer, initialState) => [getter, dispatch, key]`
 类 React useReducer API
 
 reducer： `(state, action) => NewState`
@@ -237,7 +237,9 @@ dispatch：`(action) => void`
 
 dispatch函数，发起reducer请求，给reducer函数处理
 
-#### `setupUseState(initialState) => [getter, setter]`
+key：`string` 数据存在state上的标识
+
+#### `setupUseState(initialState) => [getter, setter, key]`
 类 React useState API
 
 initialState：初始状态，可选
@@ -249,6 +251,8 @@ getter函数，调用返回数据
 setter：`(newState) => void`
 
 setter函数，调用修改state
+
+key：`string` 数据存在state上的标识
 
 #### Render相关
 #### `setupUseRender(render, hasOpenReactHooks) => void`
@@ -278,4 +282,14 @@ fn计算函数
 
 Result：结果，deps未发生变化时，不会重复计算出新结果
 
+## 其他API
 
+### 计数器
+内部使用的计数器算法
+
+#### `createCounter(pref) => (() => key)`
+创建一个计数器
+
+pref：`string` 前缀
+
+key：`string` 返回的key

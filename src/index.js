@@ -5,25 +5,25 @@ import {
 } from "react";
 
 const PREF = "_RCS";
-const CODE =
-  "_~`!@#$%^&*()_+[{]};:'\",<.>/?\\|qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890";
-const CODE_LEN = 93;
+const CODE_START = 32;
+const CODE_LEN = 94;
 
-function createCounter() {
+export function createCounter(pref) {
+  pref = pref || ''
   let i = 0;
   return function () {
-    let res = PREF;
+    let res = [];
     let idx = i;
     i++;
     while (true) {
-      let n = idx % CODE_LEN;
-      res += CODE[n];
+      let n = (idx % CODE_LEN) + CODE_START;
+      res.push(n);
       idx = Math.floor(idx / CODE_LEN);
       if (idx === 0) {
         break;
       }
     }
-    return res;
+    return pref + String.fromCharCode.apply(String, res);
   };
 }
 
@@ -117,7 +117,7 @@ export function extendsComponent(ComponentClz, setupFun) {
       for (let i = 0; i < SIZE; i++) {
         this[id][i] = [];
       }
-      this[id][STATE_COUNTER] = createCounter();
+      this[id][STATE_COUNTER] = createCounter(PREF);
       pushTarget(this);
       this.setup();
       popTarget();
@@ -188,6 +188,7 @@ export function setupUseReducer(reducer, initialState) {
         };
       });
     },
+    key,
   ];
 }
 
